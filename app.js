@@ -8,8 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const jokeContainer = document.getElementById('joke');
+const jokeContainer = document.querySelector('.joke-text');
 const btnGetJoke = document.getElementById('next-joke');
+const reportAcudits = [
+    {
+        joke: "",
+        score: 1,
+        date: "",
+    }
+];
 btnGetJoke.addEventListener('click', function getjoke() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -21,6 +28,10 @@ btnGetJoke.addEventListener('click', function getjoke() {
             const data = yield res.json();
             console.log(data.joke);
             console.log(data);
+            jokeContainer.textContent = data.joke;
+            //Update reportAcudits array
+            reportAcudits[0].joke = data.joke;
+            reportAcudits[0].date = (new Date()).toISOString();
             return data;
         }
         catch (e) {
