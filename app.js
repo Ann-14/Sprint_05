@@ -10,13 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const jokeContainer = document.querySelector('.joke-text');
 const btnGetJoke = document.getElementById('next-joke');
-const reportAcudits = [
-    {
-        joke: "",
-        score: 1,
-        date: "",
-    }
-];
+const reportAcudits = [];
+const dateArr = (new Date()).toISOString();
 btnGetJoke.addEventListener('click', function getjoke() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -26,12 +21,8 @@ btnGetJoke.addEventListener('click', function getjoke() {
                 },
             });
             const data = yield res.json();
-            console.log(data.joke);
-            console.log(data);
             jokeContainer.textContent = data.joke;
-            //Update reportAcudits array
-            reportAcudits[0].joke = data.joke;
-            reportAcudits[0].date = (new Date()).toISOString();
+            console.log(data);
             return data;
         }
         catch (e) {
@@ -39,3 +30,12 @@ btnGetJoke.addEventListener('click', function getjoke() {
         }
     });
 });
+function RecordScore(id) {
+    reportAcudits.push({
+        //Update reportAcudits array
+        joke: jokeContainer.textContent,
+        date: dateArr,
+        score: id,
+    });
+    console.log(reportAcudits);
+}

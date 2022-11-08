@@ -9,6 +9,10 @@
     font-family: "Rubik", sans-serif;
     color: #444;
   }
+  .icon-face{
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 
   .container {
     margin: 0 auto;
