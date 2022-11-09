@@ -1,16 +1,35 @@
 
 const jokeContainer = document.querySelector('.joke-text')!
-const jokeChuckNorris = document.querySelector('.joke-chuck')!
 const btnGetJoke = document.getElementById('next-joke')!
 const reportAcudits: any[] = []
 const dateArr = (new Date()).toISOString()
 let temperature = document.querySelector('.apiTemperature')!
 
+//Level II
+const jokesArr : string[] = [];
+
 
 //Jokes API
-btnGetJoke.addEventListener('click', async function getjoke() {
+ async function getjoke() {
   try {
     const res = await fetch('https://icanhazdadjoke.com/', {
+      headers: {
+        Accept: 'application/json',
+      }, 
+    })
+    const data = await res.json()
+    jokeContainer.textContent = data.joke
+    return data
+  } 
+  catch (e: any) {
+    console.error(new Error(e));
+  }
+}
+
+//Chuck Norris jokes API
+ async function getChuckNorrisJoke() {
+  try {
+    const res = await fetch('https://geek-jokes.sameerkumar.website/api?format=json', {
       headers: {
         Accept: 'application/json',
       },
@@ -22,9 +41,21 @@ btnGetJoke.addEventListener('click', async function getjoke() {
   catch (e: any) {
     console.error(new Error(e));
   }
-})
+}
+
+let displayedJoke = true;
+
+// Random num to pick joke
+const pickJoke = function (){
+  displayedJoke ? getjoke() : getChuckNorrisJoke();
+  displayedJoke = !displayedJoke;
+}
+btnGetJoke.addEventListener('click', pickJoke)
+
 //Update Jokes Array
 function RecordScore(id: number) {
+  //If there's no joke you can't score (Validation)
+  if (!jokeContainer.textContent) return alert("Please, click 'Next Joke' to rate a joke");
   reportAcudits.push({
     //Update reportAcudits array
     joke: jokeContainer.textContent,
@@ -33,7 +64,6 @@ function RecordScore(id: number) {
   })
   console.log(reportAcudits);
 }
-
 //Weather API
 let getWeather = async function () {
   try {
@@ -51,21 +81,3 @@ let getWeather = async function () {
   }
 }
 getWeather()
-
-//Chuck Norris jokes API
-btnGetJoke.addEventListener('click', async function getChuckNorrisJoke() {
-  try {
-    const res = await fetch('https://geek-jokes.sameerkumar.website/api?format=json', {
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-    const data = await res.json()
-    jokeChuckNorris.textContent = data.joke
-    return data
-  }
-  catch (e: any) {
-    console.error(new Error(e));
-  }
-}
-)

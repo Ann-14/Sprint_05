@@ -9,13 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const jokeContainer = document.querySelector('.joke-text');
-const jokeChuckNorris = document.querySelector('.joke-chuck');
 const btnGetJoke = document.getElementById('next-joke');
 const reportAcudits = [];
 const dateArr = (new Date()).toISOString();
 let temperature = document.querySelector('.apiTemperature');
+//Level II
+const jokesArr = [];
 //Jokes API
-btnGetJoke.addEventListener('click', function getjoke() {
+function getjoke() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const res = yield fetch('https://icanhazdadjoke.com/', {
@@ -31,9 +32,37 @@ btnGetJoke.addEventListener('click', function getjoke() {
             console.error(new Error(e));
         }
     });
-});
+}
+//Chuck Norris jokes API
+function getChuckNorrisJoke() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const res = yield fetch('https://geek-jokes.sameerkumar.website/api?format=json', {
+                headers: {
+                    Accept: 'application/json',
+                },
+            });
+            const data = yield res.json();
+            jokeContainer.textContent = data.joke;
+            return data;
+        }
+        catch (e) {
+            console.error(new Error(e));
+        }
+    });
+}
+let displayedJoke = true;
+// Random num to pick joke
+const pickJoke = function () {
+    displayedJoke ? getjoke() : getChuckNorrisJoke();
+    displayedJoke = !displayedJoke;
+};
+btnGetJoke.addEventListener('click', pickJoke);
 //Update Jokes Array
 function RecordScore(id) {
+    //If there's no joke you can't score (Validation)
+    if (!jokeContainer.textContent)
+        return alert("Please, click 'Next Joke' to rate a joke");
     reportAcudits.push({
         //Update reportAcudits array
         joke: jokeContainer.textContent,
@@ -61,21 +90,3 @@ let getWeather = function () {
     });
 };
 getWeather();
-//Chuck Norris jokes API
-btnGetJoke.addEventListener('click', function getChuckNorrisJoke() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const res = yield fetch('https://geek-jokes.sameerkumar.website/api?format=json', {
-                headers: {
-                    Accept: 'application/json',
-                },
-            });
-            const data = yield res.json();
-            jokeChuckNorris.textContent = data.joke;
-            return data;
-        }
-        catch (e) {
-            console.error(new Error(e));
-        }
-    });
-});
