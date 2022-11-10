@@ -10,8 +10,8 @@
     color: #444;
   }
   .icon-face{
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
   }
 
   .container {
@@ -53,11 +53,25 @@
     font-size: 52px;
     margin-bottom: 32px;
   }
+  h3{
+    text-align: center;
+  }
   .joke-text{
     font-size: 20px;
     line-height: 1.6;
     margin-bottom: 48px;
   }
+  .icon-wrapper{
+margin-top: 1.5rem;
+display: flex;
+align-items: center;
+justify-content: center;
+  }
+.button-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
  
   button{
     font-size: 20px;
@@ -69,6 +83,8 @@
     padding: 16px 32px;
     border-radius: 9px;
     border:transparent;
+    margin-top: 1.5rem;
+  
   }
 
   button:hover{

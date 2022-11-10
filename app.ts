@@ -2,7 +2,7 @@
 const jokeContainer = document.querySelector('.joke-text')!
 const btnGetJoke = document.getElementById('next-joke')!
 const reportAcudits: any[] = []
-const dateArr = (new Date()).toISOString()
+const dateInfo = (new Date()).toISOString()
 let temperature = document.querySelector('.apiTemperature')!
 
 //Level II
@@ -36,6 +36,7 @@ const jokesArr : string[] = [];
     })
     const data = await res.json()
     jokeContainer.textContent = data.joke
+    console.log(data)
     return data
   }
   catch (e: any) {
@@ -43,12 +44,12 @@ const jokesArr : string[] = [];
   }
 }
 
-let displayedJoke = true;
-
 // Random num to pick joke
 const pickJoke = function (){
-  displayedJoke ? getjoke() : getChuckNorrisJoke();
-  displayedJoke = !displayedJoke;
+  let randomNum = Math.floor(Math.random()*2)+1;
+  console.log(randomNum)
+ if(randomNum === 1){getChuckNorrisJoke()}
+ else{getjoke()}
 }
 btnGetJoke.addEventListener('click', pickJoke)
 
@@ -59,7 +60,7 @@ function RecordScore(id: number) {
   reportAcudits.push({
     //Update reportAcudits array
     joke: jokeContainer.textContent,
-    date: dateArr,
+    date: dateInfo,
     score: id,
   })
   console.log(reportAcudits);
