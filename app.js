@@ -8,13 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+//Selecting elements
+let temperature = document.querySelector('.apiTemperature');
+let currentDate = document.querySelector('.currentDate');
+let ratingIcons1 = document.getElementById('icon-face1');
+let ratingIcons2 = document.getElementById('icon-face2');
+let ratingIcons3 = document.getElementById('icon-face3');
 const jokeContainer = document.querySelector('.joke-text');
 const btnGetJoke = document.getElementById('next-joke');
 const reportAcudits = [];
 const dateInfo = (new Date()).toISOString();
-let temperature = document.querySelector('.apiTemperature');
-//Level II
-const jokesArr = [];
 //Jokes API
 function getjoke() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -44,7 +47,6 @@ function getChuckNorrisJoke() {
             });
             const data = yield res.json();
             jokeContainer.textContent = data.joke;
-            console.log(data);
             return data;
         }
         catch (e) {
@@ -62,11 +64,12 @@ const pickJoke = function () {
     else {
         getjoke();
     }
+    showIcons();
 };
 btnGetJoke.addEventListener('click', pickJoke);
 //Update Jokes Array
 function RecordScore(id) {
-    //If there's no joke you can't score (Validation)
+    //Validation (if there aren't jokes on display)
     if (!jokeContainer.textContent)
         return alert("Please, click 'Next Joke' to rate a joke");
     reportAcudits.push({
@@ -75,19 +78,24 @@ function RecordScore(id) {
         date: dateInfo,
         score: id,
     });
-    console.log(reportAcudits);
+    //Hiding icons after choosing score
+    if (ratingIcons1 != null) {
+        hideIcons();
+    }
+    alert("thanks for your vote ✔! Please, click 'Next Joke' to check out more 😊 ");
 }
 //Weather API
 let getWeather = function () {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const res = yield fetch('https://api.open-meteo.com/v1/forecast?latitude=40.4167&longitude=-3.7033&hourly=temperature_2m&current_weather=true', {
+            const res = yield fetch('https://api.open-meteo.com/v1/forecast?latitude=41.5498&longitude=-2.21059&hourly=temperature_2m&current_weather=true', {
                 headers: {
                     Accept: 'application/json',
                 },
             });
             const data = yield res.json();
-            temperature.textContent = data.current_weather.temperature;
+            temperature.textContent = `${data.current_weather.temperature}°C`;
+            currentDate.textContent = new Date().toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" });
             return data;
         }
         catch (e) {
@@ -96,3 +104,15 @@ let getWeather = function () {
     });
 };
 getWeather();
+const showIcons = function () {
+    // ✅ Remove class
+    ratingIcons1.classList.remove('hidden');
+    ratingIcons2.classList.remove('hidden');
+    ratingIcons3.classList.remove('hidden');
+};
+const hideIcons = function () {
+    // ✅ Add class
+    ratingIcons1.classList.add('hidden');
+    ratingIcons2.classList.add('hidden');
+    ratingIcons3.classList.add('hidden');
+};
