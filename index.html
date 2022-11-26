@@ -16,8 +16,8 @@
 
   <div class="all-wrapped">
   <header>
-    <div class="hero-wrapper">
-      <!-- WEATHER WRAPPER -->
+    <!-- WEATHER WRAPPER -->
+    <div class="weather-wrapper">
       <div class="aside-wrapper">
          <aside>
           <div class="apiTemperature"></div>
@@ -25,11 +25,21 @@
           <div class="currentDate"></div>
          </aside>
       </div>
+    </div> 
       <!-- JOKE WRAPPER -->
       <div class="header-container">
         <div class="header-container-inner">
           <h1>"A joke a day keeps the doctor away" </h1>
           <div class="joke-text"></div>
+
+          <div class="button-wrapper">
+            <button id="next-joke" class="learn-more">
+              <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+              </span>
+              <span class="button-text"> Next Joke!</span>
+            </button>
+          </div>
           <h3>How would you rate this joke?</h3>
        
         <div class="icon-wrapper">
@@ -41,11 +51,9 @@
             class="icon-face" id="icon-face3" alt="mad face">
         </div>
       </div>
-        <div class="button-wrapper">
-          <button id="next-joke">Next Joke</button>
-        </div>
+        
       </div>
-    </div>  
+     
   </header>
   <footer>copyright © Ann-14</footer>
   </div>
