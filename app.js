@@ -88,7 +88,7 @@ function RecordScore(id) {
 let getWeather = function () {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const res = yield fetch('https://api.open-meteo.com/v1/forecast?latitude=41.5498&longitude=-2.21059&hourly=temperature_2m&current_weather=true', {
+            const res = yield fetch('https://api.open-meteo.com/v1/forecast?latitude=41.4024488&longitude=2.1943175&hourly=temperature_2m&current_weather=true', {
                 headers: {
                     Accept: 'application/json',
                 },

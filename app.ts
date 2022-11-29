@@ -70,7 +70,7 @@ function RecordScore(id: number) {
 //Weather API
 let getWeather = async function () {
   try {
-    const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.5498&longitude=-2.21059&hourly=temperature_2m&current_weather=true', {
+    const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.4024488&longitude=2.1943175&hourly=temperature_2m&current_weather=true', {
       headers: {
         Accept: 'application/json',
       },
