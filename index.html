@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+  href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
+  rel="stylesheet"
+/>
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="all-wrapped">
+  <header>
+    <!-- WEATHER WRAPPER -->
+    <div class="weather-wrapper">
+      <div class="aside-wrapper">
+         <aside>
+          <div class="apiTemperature"></div>
+          <h2>Barcelona, Spain</h2>
+          <div class="currentDate"></div>
+         </aside>
+      </div>
+    </div> 
+      <!-- JOKE WRAPPER -->
+      <div class="header-container">
+        <div class="header-container-inner">
+          <h1>"A joke a day keeps the doctor away" </h1>
+          <div class="joke-text"></div>
+
+          <div class="button-wrapper">
+            <button id="next-joke" class="learn-more">
+              <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+              </span>
+              <span class="button-text"> Next Joke!</span>
+            </button>
+          </div>
+          <h3>How would you rate this joke?</h3>
+       
+        <div class="icon-wrapper">
+          <img src="img/3561842_emoji_emoticon_expression_shame_smiley_icon.svg" onclick="RecordScore(3)"
+            class="icon-face" id="icon-face1" alt="happy face">
+          <img src="img/3561838_emoji_emoticon_emoticons_expression_face_icon.svg" onclick="RecordScore(2)"
+            class="icon-face" id="icon-face2" alt="happy face">
+          <img src="img/3561847_emoji_emoticon_emoticons_expression_mad_icon.svg" onclick="RecordScore(1)"
+            class="icon-face" id="icon-face3" alt="mad face">
+        </div>
+      </div>
+        
+      </div>
+     
+  </header>
+  <footer>copyright © Ann-14</footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
